@@ -35,7 +35,7 @@
      
       ``` javascript
       function CreateObj(){
-        this.name = " 极客时间 "
+        this.name = " hello world "
       }
       var myObj = new CreateObj()
       ```
@@ -56,12 +56,12 @@
   1. 可在嵌套函数外部声明一个变量 self 用来保存 this
     ``` javascript
     var myObj = {
-      name : " 极客时间 ",
+      name : " hello ",
       showThis: function(){
         console.log(this)
         var self = this
         function bar(){
-          self.name = " 极客邦 "
+          self.name = " world "
         }
         bar()
       }
@@ -73,11 +73,11 @@
   2. 使用 ES6 中的箭头函数
     ``` javascript
     var myObj = {
-      name : " 极客时间 ",
+      name : " hello ",
       showThis: function(){
         console.log(this)
         var bar = () => {
-          this.name = " 极客邦 "
+          this.name = " world "
         }
         bar()
       }
