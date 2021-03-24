@@ -110,24 +110,51 @@ class DbList {
       this.size--
     }
   }
+   // 反向遍历
+  reverseDisplay() {
+    let result = ''
+    let curNode = this.findLast()
+
+    while (curNode.data!=='head') {
+      result += `${curNode.data}->`
+      curNode = curNode.prev
+    }
+    result += 'head'
+    console.log(result)
+  }
+
+   // 在尾部添加数据
+  append(element) {
+    let lastNode = this.findLast()
+    let newNode = new Node(element)
+
+    lastNode.next = newNode
+    newNode.prev = lastNode
+
+    this.size++
+  }
 }
 
 let test = new DbList();
 
-test.insert('head', 1);
-test.insert(1, 2);
-test.insert(2, 3);
-test.insert(3, 4);
-test.display();  // head->1->2->3->4
+let arr = [1, 2, 3, 4, 5, 6, 7];
 
-// 删除最后一个节点 
-test.remove(4); 
-test.display();  // head->1->2->3
+for(let i=0; i<arr.length; i++){
+    test.append(arr[i]);
+}
 
-// 删除中间的节点
-test.remove(2);
-test.display();  // head->1->3
+test.display();  // head->1->2->3->4->5->6->7
 
-// 清空链表
-test.remove('head');
-test.display();  // head
+test.insert(7, 8);
+test.display();  // head->1->2->3->4->5->6->7->8
+
+test.insert(`head`, 0.5);
+test.display();  // head->0.5->1->2->3->4->5->6->7->8
+
+test.reverseDisplay();  // 8->7->6->5->4->3->2->1->0.5->head
+
+test.remove(0.5);  // head->1->2->3->4->5->6->7->8
+test.display();
+
+test.remove(8);  
+test.display();  // head->1->2->3->4->5->6->7
