@@ -83,7 +83,7 @@ export default defineComponent({
 });
 </script>
 ```
-3. watch的用法
+3. watch和computed的用法
 
 watch 函数用来侦听特定的数据源，并在回调函数中执行副作用。默认情况是惰性的，也就是说仅在侦听的源数据变更时才执行回调。
 
@@ -114,6 +114,22 @@ watch([() => state.age, year], ([curAge, preAge], [newVal, oldVal]) => {
     console.log("新值:", curAge, "老值:", preAge);
     console.log("新值:", newVal, "老值:", oldVal);
 });
+```
+computed用法
+```javascript
+import { computed, ref } from 'vue'
+export default {
+  setup() {
+    const age = ref(18)
+    const nextAge = computed(() => {
+      return +age.value + 1
+    })
+    return { 
+      age,
+      nextAge
+    }
+  }
+}
 ```
 4. 自定义 Hooks
 useCount.ts
